@@ -1,0 +1,15 @@
+# Declarative record of the existing `tcrbert` conda env on Marvin (~/.conda/envs/tcrbert).
+# This file documents the env for reproducibility — it is not auto-applied. To recreate:
+#   module load Miniforge3
+#   conda env create -f tcrbert_env.yml -n tcrbert
+# To capture the CURRENT live env instead of hand-editing this file:
+#   conda activate tcrbert && conda env export --from-history > tcrbert_env.yml
+name: tcrbert
+channels:
+  - conda-forge
+  # Anaconda default channels are disallowed on Marvin — conda-forge only.
+dependencies:
+  - python=3.10
+  # - pytorch
+  # - transformers
+  # TODO: fill in from `conda env export --from-history` on the live env
