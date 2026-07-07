@@ -1,0 +1,68 @@
+# Declarative spec for the `dandelion` conda env (sc-dandelion, Tuong/Clatworthy lab).
+# Purpose (Thymic_NK_development project): re-annotate 10x 5' V(D)J so that
+# NON-PRODUCTIVE and partially-spliced TCR contigs are RETAINED — the signal
+# standard scVDJ QC discards and the whole point of this project.
+#
+# To recreate on Marvin (never on the login node — use srun/sbatch):
+#   module load Miniforge3
+#   conda env create -f dandelion_env.yml -n dandelion
+#   conda activate dandelion
+#   pip install "sc-dandelion[scirpy,scrublet]"     # see pip note below
+# To capture the CURRENT live env instead of hand-editing:
+#   conda activate dandelion && conda env export --from-history > dandelion_env.yml
+#
+# EXTERNAL DATABASES (required for ddl.pp.reannotate_genes — not pip/conda-installable):
+#   IgBLAST + BLAST germline references from IMGT, set up per changeo's fetch scripts.
+#   After building, set (e.g. in the job script, pointing at a path under HPC_data or a workspace):
+#     export GERMLINE=/path/to/database/germlines/
+#     export IGDATA=/path/to/database/igblast/
+#     export BLASTDB=/path/to/database/blast/
+#   Alternative to this whole env: the sc-dandelion Singularity container bundles
+#   igblast/blast + databases and is the maintainers' recommended route for
+#   preprocessing on HPC. Decide container-vs-conda on Day 1 (see hackathon_plan.md).
+#
+# CHANNELS: conda-forge is primary. bioconda is REQUIRED here (igblast, blast) —
+# note this differs from tcrbert_env.yml (conda-forge only). The disallowed set on
+# Marvin is the Anaconda *defaults* channel, not bioconda; nodefaults enforces that.
+name: dandelion
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - python=3.10
+  # --- core scientific stack (conda-forge) ---
+  - numpy>=1.23
+  - pandas>=1.4
+  - scipy>=1.8
+  - scikit-learn>=1.0
+  - numba>=0.56
+  - h5py>=3.6
+  - pytables>=3.6.1
+  - seaborn>=0.12
+  - networkx>=3.0
+  - leidenalg>=0.9
+  - scanpy>=1.9
+  - anndata>=0.9
+  # --- graph layout backend (recommended by dandelion) ---
+  - graph-tool>=2.45
+  # --- V(D)J re-annotation executables (bioconda) ---
+  - blast>=2.10.1
+  - igblast>=1.15.0
+  # --- R interop for preprocessing steps (changeo/immcantation R helpers) ---
+  - rpy2>=3.4.2
+  - r-optparse
+  - r-alakazam
+  - r-tigger
+  - r-airr
+  - r-shazam
+  # --- pip layer: sc-dandelion + immcantation python tools ---
+  # graph-tool must come from conda (above), so pip only adds the pure-python stack.
+  - pip
+  - pip:
+      # scirpy extra = AIRR interop (awkward/mudata); scrublet extra = doublet scoring,
+      # both used by this project. Pin-free to match sc-dandelion's own constraints.
+      - "sc-dandelion[scirpy,scrublet]"
+      - "changeo>=1.1"
+      - "presto>=0.6.0"
+      - "polyleven>=0.5"
