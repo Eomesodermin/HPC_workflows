@@ -1,0 +1,13 @@
+# Heavy / regenerable output — kept local, not in git history
+loop_movies/movies/*.mp4
+*.pdb
+*.cif
+runs/**/*.npz
+runs/**/predictions/
+__pycache__/
+*.pyc
+.DS_Store
+# large conda env caches if any land here
+pipeline/envs/**/pkgs/
+loop_movies.zip
+loop_movies/*.zip
