@@ -38,8 +38,8 @@ launch_chain() {
   local d="$REND/$1"
   local jr jm jb
   jr=$(sbatch --parsable "$d/rfdiffusion.sbatch")
-  jm=$(sbatch --parsable --dependency=afterok:$jr "$d/proteinmpnn.sbatch")
-  jb=$(sbatch --parsable --dependency=afterok:$jm "$d/boltz.sbatch")
+  jm=$(sbatch --parsable --dependency=afterany:$jr "$d/proteinmpnn.sbatch")
+  jb=$(sbatch --parsable --dependency=afterany:$jm "$d/boltz.sbatch")
   echo -e "$1\t$jr\t$jm\t$jb" >> "$JOBMAP"
   echo "[waves] launched $1 : rfd=$jr mpnn=$jm boltz=$jb"
 }
@@ -77,11 +77,11 @@ for cdir in $(ls -d "$REND"/*__consensus/ 2>/dev/null | xargs -n1 basename); do
   arm="${cdir%%__consensus}"
   deps=$(awk -F'\t' -v a="${arm}__" '$1 ~ "^"a {print $4}' "$JOBMAP" | paste -sd: -)
   if [ -z "$deps" ]; then echo "[waves] WARN no chains for $arm, skipping consensus"; continue; fi
-  jp=$(sbatch --parsable --dependency=afterok:$deps "$REND/$cdir/refold_prep.sbatch")
-  jf=$(sbatch --parsable --dependency=afterok:$jp "$REND/$cdir/refold_fold.sbatch")
-  jr=$(sbatch --parsable --dependency=afterok:$jf "$REND/$cdir/refold_rank.sbatch")
-  jc=$(sbatch --parsable --dependency=afterok:$jr "$REND/$cdir/chai.sbatch")
-  jx=$(sbatch --parsable --dependency=afterok:$jc "$REND/$cdir/crossspecies.sbatch")
+  jp=$(sbatch --parsable --dependency=afterany:$deps "$REND/$cdir/refold_prep.sbatch")
+  jf=$(sbatch --parsable --dependency=afterany:$jp "$REND/$cdir/refold_fold.sbatch")
+  jr=$(sbatch --parsable --dependency=afterany:$jf "$REND/$cdir/refold_rank.sbatch")
+  jc=$(sbatch --parsable --dependency=afterany:$jr "$REND/$cdir/chai.sbatch")
+  jx=$(sbatch --parsable --dependency=afterany:$jc "$REND/$cdir/crossspecies.sbatch")
   echo -e "${arm}__consensus\trefprep=$jp\trefold=$jf\trefrank=$jr\tchai=$jc\tcross=$jx" >> "$JOBMAP"
   echo "[waves] $arm consensus: refprep=$jp refold=$jf refrank=$jr chai=$jc cross=$jx (afterok:$deps)"
   LAST_CROSS_IDS+=("$jx")
