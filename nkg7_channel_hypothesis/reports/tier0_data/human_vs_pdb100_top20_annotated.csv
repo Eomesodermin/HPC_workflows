@@ -17,5 +17,5 @@ NKG7_human_Q16617_AF,7tnl,B,0.8649,0.7531,0.157,210,Rattus norvegicus,"Isoform F
 NKG7_human_Q16617_AF,3x29,A,0.8595,0.7572,0.131,175,Mus musculus,Claudin-19,non-channel tetraspan (claudin; paracellular)
 NKG7_human_Q16617_AF,7tnj,A,0.855,0.7355,0.17,194,Rattus norvegicus,"Isoform Flip of Glutamate receptor 2,Voltage-dependent calcium channel gamma-3 subunit chimera",channel_auxiliary_subunit (Ca_V/TARP gamma)
 NKG7_human_Q16617_AF,8oyv,B,0.8547,0.7073,0.077,180,synthetic construct,De novo designed soluble Claudin,non-channel tetraspan (claudin; paracellular)
-NKG7_human_Q16617_AF,9b5z,F,0.8534,0.7769,0.174,201,Mus musculus,Isoform Flip of Glutamate receptor 2,pore-forming subunit (iGluR) [chimera/complex context]
+NKG7_human_Q16617_AF,9b5z,F,0.8534,0.7769,0.174,201,Mus musculus,"Voltage-dependent calcium channel gamma-2 subunit (CACNG2; chains E/F/G/H = gamma-2, NOT GluA2 chains A-D)",channel_auxiliary_subunit (Ca_V/TARP gamma)
 NKG7_human_Q16617_AF,7tnp,C,0.8514,0.7528,0.177,192,Rattus norvegicus,"Isoform Flip of Glutamate receptor 2,Voltage-dependent calcium channel gamma-3 subunit chimera",channel_auxiliary_subunit (Ca_V/TARP gamma)
