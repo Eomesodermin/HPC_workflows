@@ -37,6 +37,13 @@ run drains, or throttle low, with explicit user go/no-go. See plan Section 4.
   analog is non-conducting (auxiliary Ca_V/TARP-γ subunits, paracellular claudins); no ion-transport
   or signalling domain; monomer pore occluded. Skeptical prior toward a scaffold/modulator role.
   Report: [`reports/nkg7_tier0_triage_report.html`](reports/nkg7_tier0_triage_report.html).
-- Tier 1 (homo-oligomer prediction + pore re-scan) = next.
+- **Tier 1 complete (2026-07-14)** → gate: **STOP the channel track**. Homo-oligomer C2–C6 predicted
+  with three independent methods (Boltz-2, AlphaFold3 3.0.1, Chai-1) + reference-HOLE pore re-scan of all
+  15 models. No confident oligomer (best interface ipTM 0.63; predictors disagree on stoichiometry AND
+  confidence), and pore-opening anti-correlates with confidence — every confident model is occluded, the
+  only "open" ones are low-confidence 100+ Å splayed aggregates. Weight of evidence now **against** a
+  self-contained channel, **for** a scaffold/auxiliary-modulator role. Do not run channel-centric Tier 2/3;
+  if Ca²⁺ biology matters, reframe to a hetero-complex campaign (NKG7 + candidate partner).
+  Report: [`reports/nkg7_tier1_oligomer_report.html`](reports/nkg7_tier1_oligomer_report.html).
 
 *All in silico. Any positive result requires wet-lab confirmation (patch clamp / bilayer reconstitution / Ca²⁺-flux).*

@@ -61,3 +61,33 @@ there) rather than the geometric probe-sphere fallback used for the monomer scan
 
 Report: `reports/nkg7_tier0_triage_report.html` (self-contained). Data: repo `reports/tier0_data/`
 (small CSVs/notes/PNG) + `HPC_data/nkg7_channel_hypothesis/tier0/` (incl. heavy foldseek_raw/).
+
+## Tier 1 — Oligomer prediction + pore test (2026-07-14) — GATE: STOP channel track
+
+Ran homo-oligomer prediction C2–C6 with THREE independent predictors on marvin (1 A40 each,
+C2–C6 sweep bundled per predictor): Boltz-2 (MSA server), AlphaFold3 3.0.1 (apptainer, MSA
+once + reuse), Chai-1 0.6.1 (cached ColabFold MSA, no ESM — node could not fetch ESM weights).
+Re-scanned all 15 models with reference HOLE (mdahole2 0.5.0) — replacing the Tier-0 geometric
+HOLE-equivalent as flagged.
+
+RESULT — channel hypothesis NOT supported, on both criteria:
+- No confident oligomer: best interface ipTM = 0.63 (Boltz-2 C2), below the ~0.8 confident bar.
+  The three predictors DISAGREE on preferred stoichiometry AND confidence (Boltz prefers low order
+  C2>C3>C4, decays to C6; AF3 uniformly low 0.16–0.22 everywhere; Chai mildly prefers high order
+  C5/C6 ~0.4). Divergence = no well-defined preferred assembly.
+- Pore anti-correlates with confidence: every model with ipTM>0.5 (all confident Boltz C2–C4) is
+  OCCLUDED (min radius 0.0–0.69 Å, sub-water). The only "open" models are the lowest-confidence
+  ones (AF3/Chai ipTM 0.16–0.41) AND have 100+ Å pore axes = splayed non-membrane aggregates,
+  not a compact ~40 Å transmembrane channel. No model is BOTH confident AND pore-enclosing.
+
+Consistent with Tier-0 skeptical prior. Weight of computational evidence now clearly AGAINST
+NKG7 being a self-contained conducting channel, FOR a scaffold/auxiliary-modulator role (same
+niche as its Ca_V/TARP-gamma + GSG1L relatives; consistent with known v-ATPase/mTORC1 function).
+
+DECISION: do NOT escalate to channel-centric Tier 2 (pore electrostatics) / Tier 3 (membrane MD)
+on a non-confident occluded oligomer. If Ca2+ biology remains of interest, reframe to a
+hetero-complex campaign (NKG7 vs candidate partners: ORAI1/STIM1, Ca_V alpha, v-ATPase/ATP6AP2).
+
+Report: reports/nkg7_tier1_oligomer_report.html (artifact 1f100bbc). Figure: tier1_consensus_pore.png.
+Marvin gotcha recorded: AF3 run_alphafold.py is at container-internal /app/alphafold, NOT $AF3_INSTALLDIR
+(cost one failed job). Chai ESM weight download breaks on node network -> run --no-use-esm-embeddings.
