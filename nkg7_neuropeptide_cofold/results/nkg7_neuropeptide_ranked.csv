@@ -1,0 +1,9 @@
+pep_id,peptide,pep_len,iptm,complex_plddt,complex_iplddt,complex_ipde,ptm,confidence_score,n_contacts,n_nkg7_res,ecl1_contacts,ecl2_contacts,tm_contacts,loop_assignment
+MCH,"melanin-concentrating hormone (147-165, C7-C16 SS)",19,0.946,0.87,0.817,0.528,0.939,0.886,50,26,18,7,1,ECL1
+PDYN,dynorphin A(1-17),17,0.925,0.852,0.77,0.766,0.94,0.866,49,30,18,9,3,ECL1
+CTRL,scrambled dynorphin-A (negative control),17,0.921,0.826,0.731,0.82,0.937,0.845,60,31,22,6,3,ECL1
+TKN4,tachykinin-4 / neurokinin-B (81-90),10,0.904,0.89,0.828,1.101,0.94,0.893,31,19,11,6,2,ECL1
+VGF,VGF TLQP-21 (554-574),21,0.888,0.836,0.75,0.972,0.918,0.846,60,29,17,9,3,ECL1
+SCG2,secretoneurin (182-214),33,0.809,0.833,0.774,1.523,0.902,0.828,56,27,17,8,2,ECL1
+GALP,galanin-like peptide (mature 25-84),60,0.79,0.788,0.749,1.776,0.876,0.788,83,34,20,8,6,ECL1
+PROK2,prokineticin-2 (mature 28-129),102,0.635,0.751,0.691,3.184,0.798,0.727,70,28,18,8,2,ECL1
