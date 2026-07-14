@@ -92,7 +92,7 @@ Three personal skills already exist in this project's catalog. Load each with `s
 
 ### 4.1 There is a binder campaign running RIGHT NOW
 
-As of 2026-07-13 ~22:47 a **full-scale de novo binder campaign is live on marvin** under the same account `ag_iei_abdullah`:
+A **full-scale de novo binder campaign was launched on marvin 2026-07-13 ~22:47** under the same account `ag_iei_abdullah` (verified still running 2026-07-14 morning, PID 399729, ~214 tasks). It is a ~2.2-day run, so **it may have finished by the time you read this — verify current state with the commands in §4.1 before assuming footprint.** As launched:
 - Detached wave wrapper (`submit_fullscale_waves.sh`, PID recorded in project memory) running 9 conformer chains + 4 consensus phases.
 - Holds up to **~260 array tasks in flight** in waves (4 chains × 65 tasks), releasing more as chains drain.
 - Estimated ~3,360 GPU-h over ~2.2 days at 16 GPU/arm throttle.
