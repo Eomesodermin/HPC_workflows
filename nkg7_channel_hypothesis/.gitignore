@@ -1,0 +1,12 @@
+# Heavy / regenerable data — keep on marvin $WS and in HPC_data, not in git
+*.pdb
+*.cif
+*.mmcif
+*.dcd
+*.xtc
+*.trr
+*.mp4
+*.raw
+runs/
+foldseek_raw/
+tmp/

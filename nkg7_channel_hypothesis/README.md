@@ -31,6 +31,12 @@ Tier 0–2 are short jobs (safe now); Tier 3 is a multi-day MD campaign — sequ
 run drains, or throttle low, with explicit user go/no-go. See plan Section 4.
 
 ## Status
-Plan authored 2026-07-14. Execution not yet started.
+- Plan authored 2026-07-14.
+- **Tier 0 complete (2026-07-14)** → gate: **ESCALATE to Tier 1**. Marvin workspace created; NKG7
+  confirmed a claudin/PMP-22/Ca_V-γ tetraspan (PF00822/IPR004031), but every structural/evolutionary
+  analog is non-conducting (auxiliary Ca_V/TARP-γ subunits, paracellular claudins); no ion-transport
+  or signalling domain; monomer pore occluded. Skeptical prior toward a scaffold/modulator role.
+  Report: [`reports/nkg7_tier0_triage_report.html`](reports/nkg7_tier0_triage_report.html).
+- Tier 1 (homo-oligomer prediction + pore re-scan) = next.
 
 *All in silico. Any positive result requires wet-lab confirmation (patch clamp / bilayer reconstitution / Ca²⁺-flux).*
