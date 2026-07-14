@@ -152,8 +152,8 @@ extra complexes. Real ipTM vs the mean±SD of its own decoy null:
 ![Null ipTM distributions](../figures/null_distribution.png)
 
 **No neuropeptide clears its own scrambled null.** Best case MCH is z = +1.74
-(p = 0.17, n.s. at n=5); four of seven have *negative* z-scores — their real
-sequence docks no better, or worse, than shuffles of themselves. ECL1 docking
+(p = 0.17, n.s. at n=5); only MCH and PDYN are positive — the other five of seven
+have *negative* z-scores, docking no better, or worse, than shuffles of themselves. ECL1 docking
 confidence is driven by amino-acid composition, not the specific sequence.
 
 ### 6B. Peptide MM/GBSA binding energies

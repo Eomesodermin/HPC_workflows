@@ -148,8 +148,8 @@ mean±SD of its own decoy null:
 
 **No neuropeptide clears its own scrambled null at a meaningful threshold.** The
 best case, MCH, sits at z = +1.74 (empirical p = 0.17 — not significant at n=5).
-Four of seven have *negative* z-scores: their real sequence docks *no better, or
-worse,* than random shuffles of themselves. SCG2 is the extreme (z = −3.10):
+Only MCH and PDYN have positive z-scores; the other five of seven are *negative*:
+their real sequence docks *no better, or worse,* than random shuffles of themselves. SCG2 is the extreme (z = −3.10):
 every one of its five shuffles out-scored the real peptide. This is the direct,
 quantitative statement of the promiscuity seen with the single control — **ECL1
 docking confidence is driven by amino-acid composition, not by the specific
