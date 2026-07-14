@@ -1,0 +1,9 @@
+pep_id,peptide,iptm,null_mean,null_sd,z_score,emp_p,dG_kcal_mol,sem,dG_vs_CTRL
+MCH,"melanin-concentrating hormone (147-165, C7-C16 SS)",0.946,0.906,0.023,1.74,0.167,-76.0,0.72,22.4
+PDYN,dynorphin A(1-17),0.925,0.899,0.048,0.54,0.667,-55.5,1.29,43.0
+CTRL,scrambled dynorphin-A (negative control),0.921,,,,,-98.4,1.12,0.0
+TKN4,tachykinin-4 / neurokinin-B (81-90),0.904,0.923,0.023,-0.85,0.667,-49.6,0.86,48.9
+VGF,VGF TLQP-21 (554-574),0.888,0.897,0.015,-0.59,0.667,-75.9,0.92,22.5
+SCG2,secretoneurin (182-214),0.809,0.898,0.029,-3.1,1.0,-67.3,1.35,31.1
+GALP,galanin-like peptide (mature 25-84),0.79,0.834,0.136,-0.32,0.833,-115.8,1.51,-17.4
+PROK2,prokineticin-2 (mature 28-129),0.635,0.766,0.126,-1.04,0.833,-75.9,1.23,22.5

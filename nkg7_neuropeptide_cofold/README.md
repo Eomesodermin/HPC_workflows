@@ -32,11 +32,14 @@ python pipeline/render_complexes.py       # PyMOL renders (needs pymol)
 
 ## Top result
 All seven nominated neuropeptides co-fold confidently onto NKG7's **extracellular
-loop 1 (ECL1, res 30–60)** — but so does a **scrambled negative control**
-(ipTM 0.92), which out-scores five of the seven. **NKG7 ECL1 is a promiscuous
-peptide-docking groove; interface confidence alone does not establish
-specificity.** Only **MCH** and **PDYN** clearly beat the composition-matched
-control. See `docs/REPORT.md` and `results/nkg7_neuropeptide_ranked.csv`.
+loop 1 (ECL1, res 30–60)** — but so do **scrambled controls**. Against a proper
+per-peptide null (5 composition-matched shuffles each), **no neuropeptide clears
+its own scrambled distribution** (best: MCH z = +1.74, n.s.). MM/GBSA
+binding-energy rescoring **disagrees with ipTM** (r ≈ 0.2–0.4, n.s.) and singles
+out a *different* peptide (GALP). **NKG7 ECL1 is a promiscuous peptide-docking
+groove; neither confidence nor single-trajectory energy establishes
+sequence-specific binding.** Both methods agree only on the *site* (ECL1). See
+`docs/REPORT.md` and `results/nkg7_specificity_scorecard.csv`.
 
 ## Compute
 Ran on the marvin HPC cluster (SLURM, NVIDIA A40). Software: Boltz-2 v2.2.1

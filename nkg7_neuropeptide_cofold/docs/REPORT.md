@@ -129,25 +129,82 @@ five of the seven real peptides. Therefore:
 3. **The meaningful readout is each real peptide vs its own scrambles.** On the single
    control so far, only **MCH** and **PDYN** clearly beat it.
 
-## 6. Specificity expansion (in progress)
+## 6. Specificity expansion — null distributions + MM/GBSA
 
-To put the specificity test on a statistical footing, two analyses extend this report:
+Two follow-up analyses put the specificity question on a quantitative footing.
 
-- **Null ipTM distributions** — 5 independent shuffles per peptide, co-folded the same
-  way, giving a per-peptide null and a z-score for the real peptide. → `results/`
-- **Peptide MM/GBSA rescoring** — physics-based ΔG_bind for every complex + controls, to
-  test whether *binding energy* separates real peptides from decoys where ipTM cannot.
-  → `results/`, `pipeline/mmgbsa_peptide.py`
+### 6A. Null ipTM distributions (5 shuffles per peptide)
 
-*(This section and its figures are populated when those jobs complete.)*
+Each real peptide was compared to **5 composition-matched scrambled decoys**
+(same amino acids, sequence shuffled, fixed seeds), co-folded identically — 35
+extra complexes. Real ipTM vs the mean±SD of its own decoy null:
+
+| Peptide | real ipTM | null mean±SD | z-score | emp. p |
+|---------|-----------|--------------|---------|--------|
+| MCH | 0.946 | 0.906 ± 0.023 | **+1.74** | 0.17 |
+| PDYN | 0.925 | 0.899 ± 0.048 | +0.54 | 0.67 |
+| GALP | 0.790 | 0.834 ± 0.136 | −0.32 | 0.83 |
+| VGF | 0.888 | 0.897 ± 0.015 | −0.59 | 0.67 |
+| TKN4 | 0.904 | 0.923 ± 0.023 | −0.85 | 0.67 |
+| PROK2 | 0.635 | 0.766 ± 0.126 | −1.04 | 0.83 |
+| SCG2 | 0.809 | 0.898 ± 0.029 | **−3.10** | 1.00 |
+
+![Null ipTM distributions](../figures/null_distribution.png)
+
+**No neuropeptide clears its own scrambled null.** Best case MCH is z = +1.74
+(p = 0.17, n.s. at n=5); four of seven have *negative* z-scores — their real
+sequence docks no better, or worse, than shuffles of themselves. ECL1 docking
+confidence is driven by amino-acid composition, not the specific sequence.
+
+### 6B. Peptide MM/GBSA binding energies
+
+All 8 poses rescored with single-trajectory MM/GBSA adapted for peptide ligands
+(whole complex ff14SB + GBn2; receptor = chain A, ligand = chain B; 25 snapshots;
+no small-molecule force field). 8/8 succeeded incl. the 102-aa PROK2.
+
+| Peptide | ΔG (kcal/mol) | SEM | ΔΔG vs CTRL | ipTM |
+|---------|---------------|-----|-------------|------|
+| GALP | **−115.8** | 1.5 | **−17.4** | 0.79 |
+| _CTRL_ | _−98.4_ | _1.1_ | _0.0_ | _0.92_ |
+| MCH | −76.0 | 0.7 | +22.4 | 0.95 |
+| PROK2 | −75.9 | 1.2 | +22.5 | 0.64 |
+| VGF | −75.9 | 0.9 | +22.5 | 0.89 |
+| SCG2 | −67.3 | 1.4 | +31.1 | 0.81 |
+| PDYN | −55.5 | 1.3 | +43.0 | 0.92 |
+| TKN4 | −49.6 | 0.9 | +48.9 | 0.90 |
+
+![MM/GBSA analysis](../figures/mmgbsa_analysis.png)
+
+**Only GALP beats the scrambled control energetically** (−17.4 kcal/mol vs CTRL);
+every other real peptide is *less* favourable than the scramble. **ΔG is
+uncorrelated with ipTM** (Pearson r = 0.22 over all 8, p = 0.61; r = 0.37 over
+the 7 real peptides, p = 0.42 — n.s.).
+
+### 6C. Combined interpretation
+
+The two orthogonal readouts **disagree and neither singles out a convincing
+specific binder**: the ipTM null test's least-bad candidate is MCH (still n.s.),
+while MM/GBSA favours GALP — a weak ipTM hit. The in-silico evidence **does not
+support sequence-specific, high-affinity binding of any single neuropeptide** at
+the resolution of these methods. What both methods *agree* on is the **binding
+site**: ECL1 (res 30–60). The models localise a candidate interaction surface but
+cannot rank the neuropeptides as physiological ligands — the ECL1 groove accepts
+peptides too promiscuously for confidence or single-trajectory energy to
+discriminate. See `results/nkg7_specificity_scorecard.csv`.
 
 ## 7. Wet-lab recommendations
 
-- Prioritise **MCH** and **PDYN** — the only peptides that beat the composition-matched
-  control — for experimental follow-up (competition binding; the NKG7-KO NK killing assay
-  with PROK2 / dynorphin-A already planned).
-- Treat all ipTM-based rankings as **hypothesis-generating**, not confirmatory: the
-  scrambled control shows the assay's confident-by-default failure mode.
+- **Experimental validation is now the rate-limiter, not more prediction.** The
+  in-silico screen localised the site (ECL1) and showed confidence/energy cannot
+  rank the peptides. Direct binding assays (SPR/BLI competition against the ECL1
+  peptide) are the decisive next step.
+- If pursuing any peptide computationally, **GALP** (best MM/GBSA) and **MCH**
+  (best ipTM z) are the two least-inconsistent candidates — but they are nominated
+  by *different* methods, itself a caution flag.
+- The NKG7-KO NK killing assay with PROK2 / dynorphin-A remains the most direct
+  functional test and is unaffected by these ranking ambiguities.
+- Treat all ipTM-based rankings as **hypothesis-generating**, not confirmatory:
+  the scrambled controls show the assay's confident-by-default failure mode.
 
 ## 8. Files
 
