@@ -43,7 +43,7 @@ NKG7 (Natural Killer cell Granule protein 7; aliases GMP-17, GIG-1; human gene o
 
 Two independent structural clues motivate the hypothesis:
 
-1. **Family assignment.** InterPro classifies NKG7 in the **PMP-22 / EMP / MP20 / Claudin tetraspan superfamily** (IPR004031 "PMP-22/EMP/MP20/Claudin", IPR004032 "PMP-22/EMP/MP20", IPR050579 "Peripheral Myelin Protein 22/Epithelial Membrane Protein"; MGI/InterPro). This superfamily is 4-TM and includes **claudins** (which form paracellular ion pores) and **MP20/lens fiber tetraspans**. Family membership does not prove channel function, but it places NKG7 among proteins that build and gate membrane pores.
+1. **Family assignment.** NKG7 is reported to belong to the **PMP-22 / EMP / MP20 / Claudin tetraspan superfamily** — a 4-TM group that includes **claudins** (which form paracellular ion pores) and **MP20 / lens-fibre tetraspans**. ⚠️ **TO VERIFY IN TIER 0D:** confirm the exact InterPro/Pfam family accessions by running InterProScan on Q16617 and reading the InterPro entry directly (do NOT trust any accession numbers quoted from memory — the specific IPR IDs must be pulled from interpro.org, not assumed). Family membership does not prove channel function, but if confirmed it places NKG7 among proteins that build and gate membrane pores.
 
 2. **Direct structural analogy to a Ca²⁺-channel subunit.** The literature explicitly notes that NKG7's **four membrane-spanning domains are structurally similar to the γ subunit of an L-type voltage-gated calcium channel (Ca_V γ / CACNG family)**, and that **loss of NKG7 significantly decreases Ca²⁺ influx** in CD8⁺ T cells stimulated with an inducer of Ca²⁺ release from acidic organelles (reviewed in *A Dual Role for NKG7…*, PMC12485375, 2025; primary Ca²⁺ data in the Ng/Corvino *Nat Immunol* 2020 line of work).
 
@@ -379,7 +379,7 @@ A **plausible, conserved, appropriately-charged selectivity filter** justifies t
 - NKG7 enhances CD8⁺ T-cell synapse efficiency (PMC9299089); NKG7 in ITP platelet apoptosis (PMC12361763); ImmunoHorizons 2021 (exocytosis optimization).
 
 **Family / structural context**
-- InterPro IPR004031 (PMP-22/EMP/MP20/Claudin), IPR004032, IPR050579 — NKG7's superfamily.
+- InterPro PMP-22/EMP/MP20/Claudin tetraspan superfamily — NKG7's reported superfamily. ⚠️ Confirm the exact IPR/Pfam accessions via InterProScan on Q16617 in Tier 0D; do not cite specific IDs until retrieved from interpro.org.
 - Claudin pore structure & paracellular selectivity (e.g. Suzuki et al., *Science* 2014, claudin-15) — for the pore-forming tetraspan comparison and as a Tier-3 positive control.
 
 **Methods (cite the tool papers in reports)**
