@@ -26,7 +26,7 @@ cd "$MPNN_DIR"
 SOL_FLAG=""; [ "$USE_SOLUBLE" = "1" ] && SOL_FLAG="--use_soluble_model"
 
 # Parse chains from the first backbone: target chain = TARGET_CHAIN, the rest are binder.
-FIRST=$(ls "$BACKBONE_DIR"/*.pdb | head -1)
+__F=("$BACKBONE_DIR"/*.pdb); FIRST=${__F[0]}
 CHAINS=$(grep '^ATOM' "$FIRST" | cut -c22 | sort -u | tr -d ' ' | tr '\n' ' ')
 echo "[proteinmpnn] chains in backbone: $CHAINS ; fixing target chain $TARGET_CHAIN"
 

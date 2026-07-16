@@ -118,7 +118,7 @@ done < $SHARDDIR/all_bb.txt
 if [ -z "$(ls -A $SHARDDIR/in 2>/dev/null)" ]; then echo "[{tag}] shard $SHARD empty, exit"; exit 0; fi
 cd $MPNN
 python helper_scripts/parse_multiple_chains.py --input_path=$SHARDDIR/in --output_path=$SHARDDIR/parsed.jsonl
-FIRST=$(ls $SHARDDIR/in/*.pdb | head -1)
+__F=($SHARDDIR/in/*.pdb); FIRST=${__F[0]}
 CHAINS=$(grep -h '^ATOM' $FIRST | cut -c22 | sort -u | tr -d ' ' | tr '\\n' ' ')
 DESIGN=$(echo "$CHAINS" | tr ' ' '\\n' | grep -v "^{tchain}$" | tr '\\n' ' ')
 python helper_scripts/assign_fixed_chains.py --input_path=$SHARDDIR/parsed.jsonl --output_path=$SHARDDIR/assigned.jsonl --chain_list "$DESIGN"

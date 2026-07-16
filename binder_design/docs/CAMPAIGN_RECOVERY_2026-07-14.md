@@ -34,3 +34,42 @@ a single TIMEOUT'd shard would cancel the downstream MPNN with
 - Use `afterany` (not `afterok`) for array→next dependencies; reserve `afterok`
   for single→single hops. Size shards to fit the wall, or use a 24 h partition.
 - Guard cap headroom for the WHOLE chain, not one task at a time.
+
+---
+
+# MPNN SIGPIPE bug — folding-only rerun (2026-07-16)
+
+The recovered campaign ran to completion (queue empty, "COMPLETED" email) but
+produced **zero scored designs**. RFdiffusion succeeded (~9.75–10k backbones ×
+9 conformers) but **every ProteinMPNN shard died with exit 141 (SIGPIPE)**:
+
+    FIRST=$(ls $SHARDDIR/in/*.pdb | head -1)   # under `set -eo pipefail`
+
+With ~500 files/shard, `ls` blocks writing to the pipe, `head` closes after
+line 1, `ls` gets SIGPIPE, `pipefail` propagates 141, `set -e` kills the shard
+before any sequence is generated. **Scale-dependent**: the smoke test (few
+files) passed because `ls` finished before `head` closed; full-scale failed on
+every shard. Boltz then folded nothing (0 scored); refold/Chai/cross ran on
+empty input (Chai logged `scored 0/0 complexes`); the email fired because jobs
+*terminated*, not because they *succeeded*.
+
+## Fix
+Replace the pipe with a bash glob array (no pipe, no SIGPIPE):
+
+    __F=($SHARDDIR/in/*.pdb); FIRST=${__F[0]}
+
+Applied to `render_fullscale.py` (template, line 121), `stage_proteinmpnn.sh`
+(line 29), and all 9 rendered `proteinmpnn.sbatch`. Verified at production scale
+(one-shard test: 500 backbones → 500 seq files, exit 0, `STAGE_MPNN_SHARD_OK`).
+
+## Folding-only rerun
+RFdiffusion output is intact and reused as-is. `refold_controller.sh` reruns
+only MPNN → Boltz per conformer + per-arm consensus + email — same reap-immune
+`intelsr_long` batch-job design, `afterany` throughout, full-chain (45-task)
+headroom guard, 5 chains in flight.
+
+**Verification discipline added to the skill:** "queue empty" ≠ "campaign
+succeeded." Always confirm actual OUTPUT (per-arm scored counts, non-empty
+ranked CSVs) and shard EXIT STATES (`sacct -X`; exit 141 across all shards is
+the SIGPIPE signature) — a green email and empty queue are not evidence of
+success.
