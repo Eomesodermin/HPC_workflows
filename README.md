@@ -1,6 +1,7 @@
 # HPC workflows
 
 [![CI](https://github.com/Eomesodermin/HPC_workflows/actions/workflows/ci.yml/badge.svg)](https://github.com/Eomesodermin/HPC_workflows/actions/workflows/ci.yml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23950808.svg)](https://doi.org/10.5281/zenodo.23950808)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Reusable scaffolding for running bioinformatics and GPU protein-design jobs on a SLURM cluster,

@@ -8,4 +8,6 @@ authors:
     orcid: "https://orcid.org/0000-0003-0683-1369"
 repository-code: "https://github.com/Eomesodermin/HPC_workflows"
 license: MIT
+doi: 10.5281/zenodo.23950808
+version: 1.0.0
 date-released: "2026-11-04"
